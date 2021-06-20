@@ -1,13 +1,9 @@
-#include "./list.h"
-#include "./fatal.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include "fatal.h"
+#include "dlist.h"
 
-struct Node
-{
-    int Element;
-    Position Next;
-};
-
-List MakeEmpty(List L)
+List InitialList(List L)
 {
     if (L)
     {
@@ -18,6 +14,7 @@ List MakeEmpty(List L)
     {
         FatalError("Out of memeory!");
     }
+    L->Prev = NULL;
     L->Next = NULL;
     return L;
 }
@@ -49,12 +46,13 @@ void Delete(int X, List L)
     Position P, TmpCell;
 
     P = L->Next;
-    while (P != NULL && P->Next->Element != X)
+    while (P && P->Next->Element != X)
     {
         P = P->Next;
     }
     TmpCell = P->Next;
     P->Next = TmpCell->Next;
+    TmpCell->Next->Prev = P;
     free(TmpCell);
 }
 
@@ -63,14 +61,14 @@ Position FindPrevious(int X, List L)
     Position P;
 
     P = L->Next;
-    while (P != NULL && P->Next->Element != X)
+    while (P && P->Next->Element != X)
     {
         P = P->Next;
     }
     return P;
 }
 
-void Insert(int X, List L, Position P)
+void InsertAfter(int X, List L, Position P)
 {
     Position TmpCell;
 
@@ -80,9 +78,21 @@ void Insert(int X, List L, Position P)
         FatalError("Out of Space!");
     }
 
-    TmpCell->Element = X;
-    TmpCell->Next = P->Next;
-    P->Next = TmpCell;
+    if (P->Next)
+    {
+        TmpCell->Element = X;
+        TmpCell->Prev = P;
+        TmpCell->Next = P->Next;
+        P->Next = TmpCell;
+        TmpCell->Next->Prev = TmpCell;
+    }
+    else
+    {
+        TmpCell->Element = X;
+        P->Next = TmpCell;
+        TmpCell->Prev = P;
+        TmpCell->Next = NULL;
+    }
 }
 
 void DeleteList(List L)
@@ -90,7 +100,6 @@ void DeleteList(List L)
     Position P, Tmp;
 
     P = L->Next;
-    L->Next = NULL;
     while (P != NULL)
     {
         Tmp = P->Next;
@@ -102,6 +111,18 @@ void DeleteList(List L)
 Position Header(List L)
 {
     return L;
+}
+
+Position Tail(List L)
+{
+    Position Tmp;
+    Tmp = L->Next;
+    while (Tmp->Next)
+    {
+        Tmp = L->Next;
+        L = L->Next;
+    }
+    return Tmp;
 }
 
 Position First(List L)
@@ -123,7 +144,6 @@ void PrintList(List L)
 {
     int i = 1;
     Position P = Header(L);
-
     if (IsEmpty(L))
     {
         printf("Empty list.\n");
@@ -136,5 +156,18 @@ void PrintList(List L)
             printf("第%d个元素是%d\n", i, Retrieve(P));
             i++;
         } while (!IsLast(P, L));
+    }
+}
+
+void PrintListBackwards(List L)
+{
+    int i = 1;
+    Position Tmp;
+    Tmp = Tail(L);
+    while (Tmp->Prev)
+    {
+        printf("倒数第%d个元素是: %d\n", i, Tmp->Element);
+        Tmp = Tmp->Prev;
+        i++;
     }
 }

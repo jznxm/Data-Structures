@@ -1,23 +1,24 @@
-#ifndef _LIST_H
+typedef struct Node
+{
+	int Element;
+	struct Node *Prev;
+	struct Node *Next;
+} PtrToNode;
 
-struct Node;
-typedef struct Node *PtrToNode;
-typedef PtrToNode List;
-typedef PtrToNode Position;
+typedef PtrToNode *List;
+typedef PtrToNode *Position;
 
-List MakeEmpty(List L);
+List InitialList(List L);
 void DeleteList(List L);
 int IsEmpty(List L);
 int IsLast(Position P, List L);
 Position Find(int X, List L);
 Position FindPrevious(int X, List L);
 void Delete(int X, List L);
-void Insert(int X, List L, Position P);
+void InsertAfter(int X, List L, Position P);
 Position Header(List L);
-Position First(List L);
+Position Tail(List L);
 Position Advance(Position P);
 int Retrieve(Position P);
-
 void PrintList(List L);
-
-#endif
+void PrintListBackwards(List L);
