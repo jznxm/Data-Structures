@@ -1,4 +1,6 @@
-#include "./list.c"
+#include <stdio.h>
+#include "fatal.h"
+#include "list.h"
 
 int main()
 {
@@ -9,6 +11,8 @@ int main()
     head = Header(L);
     printf("%d\n", IsEmpty(L));
     Insert(5, L, head);
+    first = First(L);
+    printf("第一个元素是: %d\n", first->Element);
     Insert(6, L, head);
     Insert(7, L, head);
     PrintList(head);

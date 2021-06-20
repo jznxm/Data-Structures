@@ -1,9 +1,12 @@
 #ifndef _LIST_H
 
-struct Node;
-typedef struct Node *PtrToNode;
-typedef PtrToNode List;
-typedef PtrToNode Position;
+typedef struct Node
+{
+	int Element;
+	struct Node *Next;
+} PtrToNode;
+typedef PtrToNode *List;
+typedef PtrToNode *Position;
 
 List MakeEmpty(List L);
 void DeleteList(List L);
@@ -17,7 +20,6 @@ Position Header(List L);
 Position First(List L);
 Position Advance(Position P);
 int Retrieve(Position P);
-
 void PrintList(List L);
 
 #endif

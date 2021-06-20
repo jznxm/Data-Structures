@@ -1,11 +1,5 @@
-#include "./list.h"
-#include "./fatal.h"
-
-struct Node
-{
-    int Element;
-    Position Next;
-};
+#include "fatal.h"
+#include "list.h"
 
 List MakeEmpty(List L)
 {
