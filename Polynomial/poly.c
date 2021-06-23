@@ -2,8 +2,7 @@
 
 #define MaxDegree 100
 
-static int
-Max(int A, int B)
+static int Max(int A, int B)
 {
     return A > B ? A : B;
 }
@@ -53,19 +52,6 @@ void MultPolynomial(const Polynomial Poly1,
                     Poly1->CoeffArray[i] *
                     Poly2->CoeffArray[j];
 }
-
-#if 0
-        typedef struct Node *PtrToNode;
-
-        struct Node
-        {
-            int Coefficient;
-            int Exponent;
-            PtrToNode Next;
-        };
-
-        typedef PtrToNode Polynomial;  /* Nodes sorted by exponent */
-#endif
 
 void PrintPoly(const Polynomial Q)
 {
