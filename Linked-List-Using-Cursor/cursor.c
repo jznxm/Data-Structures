@@ -2,7 +2,6 @@
 #include <stdlib.h>
 #include "fatal.h"
 
-/* Place in the interface file */
 struct Node
 {
 	ElementType Element;
