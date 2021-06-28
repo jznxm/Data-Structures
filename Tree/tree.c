@@ -56,7 +56,7 @@ SearchTree Insert(ElementType X, SearchTree T)
 	if (T == NULL)
 	{
 		/* Create and return a one-node tree */
-		T = malloc(sizeof(struct TreeNode));
+		T = (SearchTree)malloc(sizeof(struct TreeNode));
 		if (T == NULL)
 			FatalError("Out of space!!!");
 		else
