@@ -179,6 +179,7 @@ AvlTree Delete(ElementType X, AvlTree T)
         free(TmpCell);
     }
 
+    T->Height = Max(Height(T->Left), Height(T->Right)) + 1;
     return T;
 }
 
