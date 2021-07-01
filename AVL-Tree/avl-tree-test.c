@@ -21,9 +21,6 @@ int main(void)
     for (i = 1; i < 50; i += 2)
         if ((P = Find(i, T)) == NULL || Retrieve(P) != i)
             printf("Error at %d\n", i);
-    for (i = 0; i < 50; i += 2)
-        if ((P = Find(i, T)) != NULL)
-            printf("Error at %d\n", i);
 
     printf("Min is %d, Max is %d\n", Retrieve(FindMin(T)),
            Retrieve(FindMax(T)));
