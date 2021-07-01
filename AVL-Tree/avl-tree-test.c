@@ -1,11 +1,11 @@
-#include "avl-tree.h"
 #include <stdio.h>
+#include "avl-tree.h"
 
 int main(void)
 {
     AvlTree T;
     Position P;
-    int i;
+    int i, height;
     int j = 0;
 
     T = MakeEmpty(NULL);
@@ -20,7 +20,11 @@ int main(void)
 
     for (i = 1; i < 50; i += 2)
         if ((P = Find(i, T)) == NULL || Retrieve(P) != i)
+        {
+            height = Height(P);
+            printf("Height of tree: %d\n", height);
             printf("Error at %d\n", i);
+        }
 
     printf("Min is %d, Max is %d\n", Retrieve(FindMin(T)),
            Retrieve(FindMax(T)));

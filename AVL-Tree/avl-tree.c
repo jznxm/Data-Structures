@@ -14,7 +14,7 @@ int Max(int left, int right)
     return left > right?  left : right;
 }
 
-static int Height(Position P)
+int Height(Position P)
 {
     if (P == NULL)
         return -1;
@@ -179,7 +179,6 @@ AvlTree Delete(ElementType X, AvlTree T)
         free(TmpCell);
     }
 
-    T->Height = Max(Height(T->Left), Height(T->Right)) + 1;
     return T;
 }
 
