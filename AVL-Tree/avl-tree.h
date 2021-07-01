@@ -9,4 +9,4 @@ Position FindMin(AvlTree T);
 Position FindMax(AvlTree T);
 AvlTree Insert(ElementType X, AvlTree T);
 AvlTree Delete(ElementType X, AvlTree T);
-ElementType Retrive(Position P);
+ElementType Retrieve(Position P);
