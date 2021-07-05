@@ -23,7 +23,7 @@ PriorityQueue Initialize(int MaxElements)
 		FatalError("Out of space!!!");
 
 	/* Allocate the array plus one extra for sentinel */
-	H->Elements = malloc((MaxElements + 1) * sizeof(ElementType));
+	H->Elements = (ElementType *)malloc((MaxElements + 1) * sizeof(ElementType));
 	if (H->Elements == NULL)
 		FatalError("Out of space!!!");
 
